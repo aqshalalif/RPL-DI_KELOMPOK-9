@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Menjalankan migration untuk tabel personal_access_tokens
      *
      * @return void
      */
@@ -25,7 +25,7 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Membalikkan migration yang telah dijalankan.
      *
      * @return void
      */
