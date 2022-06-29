@@ -14,12 +14,17 @@
                     <div class="user-area dropdown float-right">
 
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                            <h5 style="padding-top: 15px; padding-bottom: 15px; padding-right: 5px"> | </h5>
                             <h5 style="padding-top: 15px; padding-bottom: 15px; padding-right: 5px"> {{auth()->user()->name}} </h5>
                             <img class="user-avatar rounded-circle" src=" {{url('images/admin.jpg')}} " alt="User Avatar">
 
                         </a>
 
                         <div class="user-menu dropdown-menu">                            
+                            @can('admin')
+                            <button class="dropdown-item" href=" {{route('dashboard')}} "><i class="bi bi-box-arrow-right"></i>Dashboard </buton>
+                            @endcan
                             <form action=" {{route('logout')}} " method="POST">
                                 @csrf
                                 <button type="submit" class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i>Logout</button>

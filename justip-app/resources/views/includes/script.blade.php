@@ -45,8 +45,9 @@
 
         // Pie chart flotPie1
         var piedata = [
-            { label: "Pending", data: [[1,32]], color: '#5c6bc0'},
-            { label: "Gagal", data: [[1,33]], color: '#ef5350'},
+            { label: "Pending", data: [[1,32]], color: '#f0ad4e'},
+            { label: "Ongoing", data: [[1,32]], color: '#0275d8'},
+            { label: "Cancelled", data: [[1,33]], color: '#ef5350'},
             { label: "Sukses", data: [[1,35]], color: '#66bb6a'}
         ];
 

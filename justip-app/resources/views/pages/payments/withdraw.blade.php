@@ -3,64 +3,71 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <strong>Tambah Barang</strong>
+            <strong>Withdraw</strong>
+            <br>
+            <medium> Saldo saat ini: Rp1.200.000 </medium>
         </div>
         <div class="card-body card-block">
             <form action=" {{route('products.store')}} " method="POST">
                 @csrf
+
+                {{-- <div class="form-group">
+                    <label for="account_num" class="form-control-label">Nomor Rekening</label>
+                    <select name="account_num" class="form-control @error('account_num') is-invalid @enderror">
+                        @foreach ($products as $product)
+                            <option value=" {{$product->id}} "> {{$product->name}} </option>
+                        @endforeach
+                    </select>
+                    @error('account_num')
+                        <div class="text-muted"> {{$message}} </div>
+                    @enderror
+                </div>
+
+ --}}
+
                 <div class="form-group">
-                    <label for="name" class="form-control-label">Nama Barang</label>
-                    <input type="text" name="name" value=" {{old('name')}} " class="form-control @error('name') is-invalid @enderror">
-                    @error('name')
+                    <label for="amount" class="form-control-label">Nomor Rekening Tujuan</label>
+                    <input type="number" name="amount" value=" {{old('amount')}} " class="form-control @error('amount') is-invalid @enderror">
+                    @error('amount')
                         <div class="text-muted"> {{$message}} </div>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="type" class="form-control-label">Tipe Barang</label>
-                    <input type="text" name="type" value=" {{old('type')}} " class="form-control @error('type') is-invalid @enderror">
-                    @error('type')
+                    <label for="amount" class="form-control-label">Nominal Withdraw</label>
+                    <input type="number" name="amount" value=" {{old('amount')}} " class="form-control @error('amount') is-invalid @enderror">
+                    @error('amount')
+                        <div class="text-muted"> {{$message}} </div>
+                    @enderror
+                </div>
+
+                {{-- <div class="form-group">
+                    <label for="amount" class="form-control-label">Nominal Pembayaran</label>
+                    <input type="number" name="amount" value=" {{old('amount')}} " class="form-control @error('amount') is-invalid @enderror">
+                    @error('amount')
                         <div class="text-muted"> {{$message}} </div>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="description" class="form-control-label">Deskripsi Barang</label>
-                    <textarea name="description" class="ckeditor form-control @error('description ') is-invalid @enderror"> {{old('description')}} </textarea>
-                    @error('description')
+                    <label for="payment_method" class="form-control-label">Metode Pembayaran</label>
+                    <select name="payment_method" class="form-control @error('payment_method') is-invalid @enderror">
+                        @foreach ($products as $product)
+                            <option value=" {{$product->id}} "> Transfer bank </option>
+                        @endforeach
+                    </select>
+                    @error('payment_method')
                         <div class="text-muted"> {{$message}} </div>
                     @enderror
-                </div>
+                </div> --}}
 
                 <div class="form-group">
-                    <label for="price" class="form-control-label">Harga Barang</label>
-                    <input type="number" name="price" value=" {{old('price')}} " class="form-control @error('price') is-invalid @enderror">
-                    @error('price')
-                        <div class="text-muted"> {{$message}} </div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <label for="quantity" class="form-control-label">Jumlah Barang</label>
-                    <input type="number" name="quantity" value=" {{old('quantity')}} " class="form-control @error('quantity') is-invalid @enderror">
-                    @error('quantity')
-                        <div class="text-muted"> {{$message}} </div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <label for="location" class="form-control-label">Lokasi Barang</label>
-                    <input type="text" name="location" value=" {{old('location')}} " class="form-control @error('location') is-invalid @enderror">
-                    @error('location')
-                        <div class="text-muted"> {{$message}} </div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <button class="btn btn-primary btn-block" type="submit">Buat Pesanan</button>
+                    <button class="btn btn-primary btn-block" type="submit">Kirim</button>
                 </div>
             </form>
         </div>
     </div>
+
+    
     
 @endsection

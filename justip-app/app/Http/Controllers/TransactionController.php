@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TransactionRequest;
+
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
+use App\Models\Product;
+use App\Models\User;
+
+use Illuminate\Support\Facades\Gate;
 
 use Illuminate\Http\Request;
 
@@ -26,10 +32,19 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $items = Transaction::all();
+        if(Gate::allows('admin'))
+        {
+            $items = Transaction::all();
+        } else {
+            $items = Transaction::where(['penitip_id' => auth()->user()->id])
+            ->orWhere(['traveler_id' => auth()->user()->id])->get();
+        }
+
+        $products = Transaction::with('products')->get();
 
         return view('pages.transactions.index')->with([
-            'items' => $items
+            'items' => $items,
+            'products' => $products
         ]);
     }
 
@@ -40,7 +55,11 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all();
+        
+        return view('pages.payments.paytraveler')->with([
+            'products' => $products
+        ]);
     }
 
     /**
@@ -49,9 +68,12 @@ class TransactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TransactionRequest $request)
     {
-        //
+        $data = $request->all();
+
+        Transaction::create($data);
+        return redirect()->route('transactions.index');
     }
 
     /**
@@ -91,7 +113,7 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TransactionRequest $request, $id)
     {
         $data = $request->all();
 
@@ -118,7 +140,7 @@ class TransactionController extends Controller
     public function setStatus(Request $request, $id)
     {
         $request->validate([
-            'status' => 'required|in:PENDING,SUCCESS,FAILED'
+            'status' => 'required|in:PENDING,SUCCESS,CANCELLED,ONGOING'
         ]);
 
         $item = Transaction::findOrFail($id);
@@ -127,5 +149,14 @@ class TransactionController extends Controller
         $item->save();
 
         return redirect()->route('transactions.index');
+    }
+
+    public function courier($id)
+    {
+        $item = Transaction::findOrFail($id);
+        
+        return view('pages.transactions.addcourier')->with([
+            'item' => $item,
+        ]);
     }
 }

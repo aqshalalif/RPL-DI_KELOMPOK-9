@@ -24,12 +24,10 @@
                         <a href=" {{ route('travels.create') }} "> <i class="menu-icon fa fa-plus"></i>Tambah Perjalanan</a>
                     </li>
 
-                    @can('admin')
                     <li class="menu-title">Transaksi</li><!-- /.menu-title -->
                     <li class="">
-                        <a href=" {{ route('transactions.index') }} "> <i class="menu-icon fa fa-list"></i>Lihat Transaksi</a>
+                        <a href=" {{ route('transactions.index') }} "> <i class="menu-icon fa fa-list"></i>Daftar Transaksi</a>
                     </li>
-                    @endcan
 
                     <li class="menu-title">Pembayaran</li><!-- /.menu-title -->
                     <li class="">

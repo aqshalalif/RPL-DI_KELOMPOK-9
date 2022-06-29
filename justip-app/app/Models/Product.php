@@ -21,4 +21,9 @@ class Product extends Model
     {
         return $this->hasMany(ProductGallery::class,'products_id');
     }
+
+    public function transactions()
+    {
+        return $this->hasOne(Transaction::class, 'pesanan_id');
+    }
 }

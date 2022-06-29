@@ -1864,7 +1864,8 @@ header .form-inline {
   line-height: 1.2em; }
 
 .legend table {
-  border-spacing: 5px; }
+  border-spacing: 5px; 
+  width: 100px;}
 
 #chart1,
 #flotBar,

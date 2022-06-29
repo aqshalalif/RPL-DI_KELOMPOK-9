@@ -36,6 +36,7 @@ return array(
     'App\\Http\\Middleware\\isAdmin' => $baseDir . '/app/Http/Middleware/isAdmin.php',
     'App\\Http\\Requests\\ProductGalleryRequest' => $baseDir . '/app/Http/Requests/ProductGalleryRequest.php',
     'App\\Http\\Requests\\ProductRequest' => $baseDir . '/app/Http/Requests/ProductRequest.php',
+    'App\\Http\\Requests\\TransactionRequest' => $baseDir . '/app/Http/Requests/TransactionRequest.php',
     'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
     'App\\Models\\ProductGallery' => $baseDir . '/app/Models/ProductGallery.php',
     'App\\Models\\Transaction' => $baseDir . '/app/Models/Transaction.php',

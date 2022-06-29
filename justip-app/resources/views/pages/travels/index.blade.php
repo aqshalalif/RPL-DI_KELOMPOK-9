@@ -33,7 +33,7 @@
                                             <td> {{$traveler->travel_status}} </td>
                                             <td  class="text-center">
                                                 <div>
-                                                    <a href=" {{route('payments.edit', $traveler->id)}} " class="btn btn-success btn-block">
+                                                    <a href=" {{route('transactions.create')}} " class="btn btn-success btn-block">
                                                         <i></i> Bayar Traveler
                                                     </a>
                                                 </div>

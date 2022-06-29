@@ -15,11 +15,9 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('uuid');
-            $table->string('name');
-            $table->string('email');
-            $table->string('number');
-            $table->string('address');
+            $table->integer('penitip_id');
+            $table->integer('traveler_id');
+            $table->integer('pesanan_id');
             $table->integer('transaction_total');
             $table->string('transaction_status');
             $table->softDeletes();

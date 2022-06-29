@@ -1,22 +1,17 @@
 <table class="table table-bordered">
     <tr>
-        <th>Nama</th>
-        <td> {{$item->name}} </td>
+        <th>Nama Penitip</th>
+        <td> {{$item->penitip->name}} </td>
     </tr>
 
     <tr>
-        <th>Email</th>
-        <td> {{$item->email}} </td>
+        <th>Nama Traveler</th>
+        <td> {{$item->traveler->name}} </td>
     </tr>
 
     <tr>
-        <th>Nomor Telepon</th>
-        <td> {{$item->number}} </td>
-    </tr>
-
-    <tr>
-        <th>Alamat</th>
-        <td> {{$item->address}} </td>
+        <th>Nama Pesanan</th>
+        <td> {{$item->products->name}} </td>
     </tr>
 
     <tr>
@@ -38,34 +33,41 @@
                     <th>Tipe</th>
                     <th>Harga</th>
                 </tr>
-                @foreach ($item->details as $detail)
-                    <tr>
-                        <td> {{$detail->product->name}} </td>
-                        <td> {{$detail->product->type}} </td>
-                        <td>Rp. {{$detail->product->price}} </td>
-                    </tr>
-                @endforeach
+                <tr>
+                    <td> {{$item->products->name}} </td>
+                    <td> {{$item->products->type}} </td>
+                    <td>Rp. {{$item->products->price}} </td>
+                </tr>
             </table>
         </td>
     </tr>
 </table>
 
+@can('admin')
 <div class="row">
-    <div class="col-4">
+    <div class="col-3">
         <a href=" {{route('transactions.status', $item->id)}}?status=SUCCESS" class="btn btn-success btn-block">
             <i class="fa fa-check"></i> Set Sukses
         </a>
     </div>
 
-    <div class="col-4">
-        <a href=" {{route('transactions.status', $item->id)}}?status=FAILED" class="btn btn-warning btn-block">
-            <i class="fa fa-times"></i> Set Gagal
+    <div class="col-3">
+        <a href=" {{route('transactions.status', $item->id)}}?status=ONGOING" class="btn btn-primary btn-block">
+            <i class="fa fa-credit-card"></i> Verifikasi
         </a>
     </div>
 
-    <div class="col-4">
-        <a href=" {{route('transactions.status', $item->id)}}?status=PENDING" class="btn btn-info btn-block">
+    <div class="col-3">
+        <a href=" {{route('transactions.status', $item->id)}}?status=CANCELLED" class="btn btn-danger btn-block">
+            <i class="fa fa-times"></i> Batalkan
+        </a>
+    </div>
+
+    <div class="col-3">
+        <a href=" {{route('transactions.status', $item->id)}}?status=PENDING" class="btn btn-warning btn-block">
             <i class="fa fa-spinner"></i> Set Pending
         </a>
     </div>
 </div>
+@endcan
+

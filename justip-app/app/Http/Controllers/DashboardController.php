@@ -25,16 +25,23 @@ class DashboardController extends Controller
         $items = Transaction::orderBy('id', 'DESC')->take(5)->get();
         $pie = [
             'pending' => Transaction::where('transaction_status', 'PENDING')->count(),
+            'ongoing' => Transaction::where('transaction_status', 'ONGOING')->count(),
             'success' => Transaction::where('transaction_status', 'SUCCESS')->count(),
-            'failed' => Transaction::where('transaction_status', 'FAILED')->count(),
+            'cancelled' => Transaction::where('transaction_status', 'CANCELLED')->count(),
         ];
 
-        return view('pages.dashboard')->with([
-            'income' => $income,
-            'sales' => $sales,
-            'items' => $items,
-            'pie' => $pie,
+        if (auth()->user()->role === 'admin') {
+            return view('pages.dashboard')->with([
+                'income' => $income,
+                'sales' => $sales,
+                'items' => $items,
+                'pie' => $pie,
+    
+            ]);
+        } else {
+            return view('pages.home');
+        }
+        
 
-        ]);
     } 
 }

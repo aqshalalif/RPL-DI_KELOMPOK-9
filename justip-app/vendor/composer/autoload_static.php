@@ -551,6 +551,7 @@ class ComposerStaticInitbbbd0fe5913bd8a5d8279e7e0a7d5d01
         'App\\Http\\Middleware\\isAdmin' => __DIR__ . '/../..' . '/app/Http/Middleware/isAdmin.php',
         'App\\Http\\Requests\\ProductGalleryRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProductGalleryRequest.php',
         'App\\Http\\Requests\\ProductRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProductRequest.php',
+        'App\\Http\\Requests\\TransactionRequest' => __DIR__ . '/../..' . '/app/Http/Requests/TransactionRequest.php',
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
         'App\\Models\\ProductGallery' => __DIR__ . '/../..' . '/app/Models/ProductGallery.php',
         'App\\Models\\Transaction' => __DIR__ . '/../..' . '/app/Models/Transaction.php',

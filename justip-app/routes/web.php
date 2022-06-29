@@ -35,7 +35,9 @@ Route::resource('products', ProductController::class);
 
 Route::get('transactions/{id}/set-status', [TransactionController::class, 'setStatus'])->name('transactions.status');
 
-Route::resource('transactions', TransactionController::class)->middleware('admin');
+Route::get('transactions/{id}/courier', [TransactionController::class, 'courier'])->name('transactions.courier');
+
+Route::resource('transactions', TransactionController::class);
 
 Route::resource('travels', TravelController::class);
 

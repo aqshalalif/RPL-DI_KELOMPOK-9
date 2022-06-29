@@ -3,71 +3,52 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <strong>Withdraw</strong>
-            <br>
-            <medium> Saldo saat ini: Rp1.200.000 </medium>
+            <strong>Bayar Traveler</strong>
         </div>
         <div class="card-body card-block">
-            <form action=" {{route('products.store')}} " method="POST">
+            <form action=" {{route('transactions.store')}} " method="POST" enctype="multipart/form-data">
                 @csrf
 
-                {{-- <div class="form-group">
-                    <label for="account_num" class="form-control-label">Nomor Rekening</label>
-                    <select name="account_num" class="form-control @error('account_num') is-invalid @enderror">
+                <div class="form-group">
+                    <label for="nama_penitip" class="form-control-label">Nama Penitip</label>
+                    <input type="text" name="nama_penitip" value=" {{old('nama_penitip') ? old('nama_penitip') : auth()->user()->name}}  " class="form-control @error('nama_penitip') is-invalid @enderror">
+                    @error('nama_penitip')
+                        <div class="text-muted"> {{$message}} </div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="nama_traveler" class="form-control-label">Nama Traveler</label>
+                    <input type="text" name="nama_traveler" value=" {{old('nama_traveler')}} " class="form-control @error('nama_traveler') is-invalid @enderror">
+                    @error('nama_traveler')
+                        <div class="text-muted"> {{$message}} </div>
+                    @enderror
+                </div>
+                
+                <div class="form-group">
+                    <label for="pesanan_id" class="form-control-label">Nama Pesanan</label>
+                    <select name="pesanan_id" class="form-control @error('pesanan_id') is-invalid @enderror">
                         @foreach ($products as $product)
                             <option value=" {{$product->id}} "> {{$product->name}} </option>
                         @endforeach
                     </select>
-                    @error('account_num')
-                        <div class="text-muted"> {{$message}} </div>
-                    @enderror
-                </div>
-
- --}}
-
-                <div class="form-group">
-                    <label for="amount" class="form-control-label">Nomor Rekening Tujuan</label>
-                    <input type="number" name="amount" value=" {{old('amount')}} " class="form-control @error('amount') is-invalid @enderror">
-                    @error('amount')
+                    @error('pesanan_id')
                         <div class="text-muted"> {{$message}} </div>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="amount" class="form-control-label">Nominal Withdraw</label>
-                    <input type="number" name="amount" value=" {{old('amount')}} " class="form-control @error('amount') is-invalid @enderror">
-                    @error('amount')
-                        <div class="text-muted"> {{$message}} </div>
-                    @enderror
-                </div>
-
-                {{-- <div class="form-group">
-                    <label for="amount" class="form-control-label">Nominal Pembayaran</label>
-                    <input type="number" name="amount" value=" {{old('amount')}} " class="form-control @error('amount') is-invalid @enderror">
-                    @error('amount')
+                    <label for="transaction_total" class="form-control-label">Nominal Pembayaran</label>
+                    <input type="text" name="transaction_total" value=" {{old('transaction_total')}} " class="form-control @error('transaction_total') is-invalid @enderror">
+                    @error('transaction_total')
                         <div class="text-muted"> {{$message}} </div>
                     @enderror
                 </div>
 
                 <div class="form-group">
-                    <label for="payment_method" class="form-control-label">Metode Pembayaran</label>
-                    <select name="payment_method" class="form-control @error('payment_method') is-invalid @enderror">
-                        @foreach ($products as $product)
-                            <option value=" {{$product->id}} "> Transfer bank </option>
-                        @endforeach
-                    </select>
-                    @error('payment_method')
-                        <div class="text-muted"> {{$message}} </div>
-                    @enderror
-                </div> --}}
-
-                <div class="form-group">
-                    <button class="btn btn-primary btn-block" type="submit">Kirim</button>
+                    <button class="btn btn-primary btn-block" type="submit">Bayar</button>
                 </div>
             </form>
         </div>
     </div>
-
-    
     
 @endsection

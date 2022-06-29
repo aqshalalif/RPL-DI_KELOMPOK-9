@@ -14,13 +14,10 @@ class Transaction extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'uuid',
-        'name',
-        'email',
-        'number',
-        'address',
+        'nama_penitip',
+        'nama_traveler',
+        'pesanan_id',
         'transaction_total',
-        'transaction_status'
     ];
 
     protected $hidden = [
@@ -30,5 +27,20 @@ class Transaction extends Model
     public function details()
     {
         return $this->hasMany(TransactionDetail::class, 'transaction_id');
+    }
+
+    public function products()
+    {
+        return $this->belongsTo(Product::class,'pesanan_id','id');
+    }
+
+    public function penitip()
+    {
+        return $this->belongsTo(User::class,'penitip_id','id');
+    }
+
+    public function traveler()
+    {
+        return $this->belongsTo(User::class,'traveler_id','id');
     }
 }
